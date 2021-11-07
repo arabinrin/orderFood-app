@@ -33,13 +33,16 @@ class _CategoriesState extends State<Categories> {
                 padding: EdgeInsets.all(8),
                 child: Column(children: <Widget>[
                   Container(
-                    decoration: BoxDecoration(color: Colors.white, boxShadow: [
-                      BoxShadow(
-                        color: Colors.red.withOpacity(.2),
-                        offset: Offset(4, 6),
-                        blurRadius: 10,
-                      )
-                    ]),
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10),
+                        color: Colors.white,
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.red.withOpacity(.2),
+                            offset: Offset(4, 6),
+                            blurRadius: 10,
+                          )
+                        ]),
                     child: Padding(
                         padding: EdgeInsets.all(4),
                         child: Image.asset(
