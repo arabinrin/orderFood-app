@@ -1,16 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:food_course/models/category.dart';
+import 'package:food_course/provider/category.dart';
 import 'package:food_course/src/widget/title.dart';
+import 'package:provider/provider.dart';
 
-List<Category> categoriesList = [
-  Category(name: 'Salad', image: 'salad.png'),
-  Category(name: 'pizza', image: 'pizza.png'),
-  Category(name: 'French fires', image: 'french-fries.png'),
-  Category(name: 'Donut', image: 'donut.png'),
-  Category(name: 'Spagetti', image: 'food1.jpg'),
-  Category(name: 'Steak', image: 'food5.jpg'),
-  Category(name: 'Cream Beans', image: 'food2.jpg'),
-];
+List<CategoryModel> categoriesList = [];
 
 class Categories extends StatefulWidget {
   Categories({Key? key}) : super(key: key);
@@ -22,12 +16,14 @@ class Categories extends StatefulWidget {
 class _CategoriesState extends State<Categories> {
   @override
   Widget build(BuildContext context) {
+    final categoryProvider = Provider.of<CategoryProvider>(context);
+
     return Container(
         padding: EdgeInsets.symmetric(horizontal: 10),
         height: 100,
         child: ListView.builder(
             scrollDirection: Axis.horizontal,
-            itemCount: categoriesList.length,
+            itemCount: categoryProvider.categories.length,
             itemBuilder: (_, i) {
               return Padding(
                 padding: EdgeInsets.all(8),
@@ -45,15 +41,15 @@ class _CategoriesState extends State<Categories> {
                         ]),
                     child: Padding(
                         padding: EdgeInsets.all(4),
-                        child: Image.asset(
-                          'images/${categoriesList[i].image}',
+                        child: Image.network(
+                          categoryProvider.categories[i].image,
                           width: 50,
                           height: 50,
                         )),
                   ),
                   SizedBox(height: 5),
                   CustomTitle(
-                    text: categoriesList[i].name,
+                    text: categoryProvider.categories[i].name,
                     color: Colors.grey,
                     weight: FontWeight.normal,
                     size: 14,

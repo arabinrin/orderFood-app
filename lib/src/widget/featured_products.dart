@@ -4,36 +4,7 @@ import 'package:food_course/models/product.dart';
 import 'package:food_course/src/screen/detail.dart';
 import 'package:food_course/src/widget/title.dart';
 
-List<Product> productsList = [
-  Product(
-      name: 'Steak',
-      price: 5.5,
-      rating: 2.2,
-      image: 'images/food5.jpg',
-      vendor: 'FoodOps',
-      wishList: true),
-  Product(
-      name: 'Dough Pies',
-      price: 3.5,
-      rating: 4,
-      image: 'images/food2.jpg',
-      vendor: 'FoodOps',
-      wishList: false),
-  Product(
-      name: 'Spagetti',
-      price: 10,
-      rating: 2,
-      image: 'images/food1.jpg',
-      vendor: 'FoodOps',
-      wishList: true),
-  Product(
-      name: 'Chinese Buffet',
-      price: 20.5,
-      rating: 4.2,
-      image: 'images/food4.jpg',
-      vendor: 'FoodOps',
-      wishList: false),
-];
+List<ProductModel> productsList = [];
 
 class FeaturedProduct extends StatelessWidget {
   const FeaturedProduct({Key? key}) : super(key: key);
@@ -109,7 +80,7 @@ class FeaturedProduct extends StatelessWidget {
                                     )
                                   ]),
                               child: Icon(
-                                productsList[i].wishList
+                                productsList[i].featured
                                     ? Icons.favorite
                                     : Icons.favorite_border,
                                 size: 16,

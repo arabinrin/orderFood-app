@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:food_course/provider/auth.dart';
+import 'package:food_course/provider/category.dart';
+import 'package:food_course/provider/user.dart';
 import 'package:food_course/src/screen/home.dart';
 import 'package:food_course/src/screen/login_screen.dart';
 import 'package:food_course/src/widget/loading.dart';
@@ -11,7 +12,8 @@ void main() async {
   await Firebase.initializeApp();
   runApp(MultiProvider(
     providers: [
-      ChangeNotifierProvider.value(value: AuthProvider.initialize()),
+      ChangeNotifierProvider.value(value: UserProvider.initialize()),
+      ChangeNotifierProvider.value(value: CategoryProvider.initialize()),
     ],
     child: MaterialApp(
       debugShowCheckedModeBanner: false,
@@ -29,8 +31,8 @@ class ScreenController extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final auth = Provider.of<AuthProvider>(context);
-    switch (auth.status) {
+    final user = Provider.of<UserProvider>(context);
+    switch (user.status) {
       case Status.Uninitialized:
         return Loading();
       case Status.Unauthenticated:

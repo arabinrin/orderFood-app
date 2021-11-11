@@ -2,7 +2,8 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:food_course/helper/navigations.dart';
-import 'package:food_course/provider/auth.dart';
+import 'package:food_course/provider/category.dart';
+import 'package:food_course/provider/user.dart';
 import 'package:food_course/src/screen/cart.dart';
 import 'package:food_course/src/widget/Popular_card.dart';
 import 'package:food_course/src/widget/categories.dart';
@@ -16,7 +17,8 @@ class Home extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final authProvider = Provider.of<AuthProvider>(context);
+    final userProvider = Provider.of<UserProvider>(context);
+    final categoryProvider = Provider.of<CategoryProvider>(context);
 
     return SafeArea(
       child: Scaffold(
@@ -27,14 +29,14 @@ class Home extends StatelessWidget {
                     decoration:
                         BoxDecoration(color: Colors.red.withOpacity(.5)),
                     accountName: Text(
-                      authProvider.userModel.name,
+                      userProvider.userModel!.name.toString(),
                       style: TextStyle(
                           color: Colors.white,
                           fontWeight: FontWeight.bold,
                           fontSize: 18),
                     ),
                     accountEmail: Text(
-                      authProvider.userModel.email,
+                      userProvider.userModel!.email!.toString(),
                       style: TextStyle(
                           color: Colors.white,
                           fontWeight: FontWeight.normal,

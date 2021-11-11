@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:food_course/helper/navigations.dart';
-import 'package:food_course/provider/auth.dart';
+import 'package:food_course/provider/user.dart';
 import 'package:food_course/src/screen/home.dart';
 import 'package:food_course/src/widget/loading.dart';
 import 'package:provider/provider.dart';
@@ -17,7 +17,7 @@ bool isLogin = false;
 class _SigninScreenState extends State<SigninScreen> {
   @override
   Widget build(BuildContext context) {
-    final authProvider = Provider.of<AuthProvider>(context);
+    final authProvider = Provider.of<UserProvider>(context);
     final _key = GlobalKey<ScaffoldState>();
     return Scaffold(
       backgroundColor: Colors.white,

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:food_course/helper/navigations.dart';
-import 'package:food_course/provider/auth.dart';
+import 'package:food_course/provider/user.dart';
 import 'package:food_course/src/screen/home.dart';
 import 'package:food_course/src/screen/signin.dart';
 import 'package:food_course/src/widget/loading.dart';
@@ -19,7 +19,7 @@ class _LoginScreenState extends State<LoginScreen> {
   final _key = GlobalKey<ScaffoldState>();
   @override
   Widget build(BuildContext context) {
-    final authProvider = Provider.of<AuthProvider>(context);
+    final authProvider = Provider.of<UserProvider>(context);
     return Scaffold(
       key: _key,
       backgroundColor: Colors.white,

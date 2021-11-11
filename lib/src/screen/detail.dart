@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:food_course/models/product.dart';
 
 class Details extends StatefulWidget {
-  final Product product;
+  final ProductModel product;
   Details({required this.product});
 
   @override
