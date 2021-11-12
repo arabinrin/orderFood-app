@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:food_course/models/category.dart';
 import 'package:food_course/provider/category.dart';
+import 'package:food_course/src/widget/loading.dart';
 import 'package:food_course/src/widget/title.dart';
 import 'package:provider/provider.dart';
+import 'package:transparent_image/transparent_image.dart';
 
 List<CategoryModel> categoriesList = [];
 
@@ -41,10 +43,23 @@ class _CategoriesState extends State<Categories> {
                         ]),
                     child: Padding(
                         padding: EdgeInsets.all(4),
-                        child: Image.network(
-                          categoryProvider.categories[i].image,
-                          width: 50,
-                          height: 50,
+                        child: Stack(
+                          children: <Widget>[
+                            Positioned.fill(
+                              child: Align(
+                                alignment: Alignment.center,
+                                child: Loading(),
+                              ),
+                            ),
+                            Center(
+                              child: FadeInImage.memoryNetwork(
+                                placeholder: kTransparentImage,
+                                image: categoryProvider.categories[i].image,
+                                width: 50,
+                                height: 50,
+                              ),
+                            ),
+                          ],
                         )),
                   ),
                   SizedBox(height: 5),
