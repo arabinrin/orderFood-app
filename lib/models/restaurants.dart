@@ -8,24 +8,26 @@ class OrderRestaurant {
   static const AVG_PRICE = "avgPrice";
   static const RATING = "rating";
   static const RATE = "rate";
-
+  static const ADDRESS = "address";
   static const IMAGE = "image";
   static const POPULAR = "popular";
 
-  String _id;
+  int _id;
   String _name;
   double _avgPrice;
   double _rating;
   int _rate;
   String _image;
+  String _address;
   bool _popular;
 
-  String get id => _id;
+  int get id => _id;
   String get name => _name;
   double get avgPrice => _avgPrice;
   double get rating => _rating;
   int get rate => _rate;
   String get image => _image;
+  String get address => _address;
   bool get popular => _popular;
 
   OrderRestaurant.fromSnapshot(DocumentSnapshot snapshot) {
@@ -36,5 +38,6 @@ class OrderRestaurant {
     _rate = snapshot[RATE];
     _image = snapshot[IMAGE];
     _popular = snapshot[POPULAR];
+    _address = snapshot[ADDRESS];
   }
 }
