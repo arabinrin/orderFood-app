@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:food_course/models/popular.dart';
 import 'package:food_course/provider/restaurant.dart';
 import 'package:food_course/src/widget/loading.dart';
 import 'package:provider/provider.dart';
@@ -120,8 +119,7 @@ class _PopularCardState extends State<PopularCard> {
                               begin: Alignment.bottomCenter,
                               end: Alignment.topCenter,
                               colors: [
-                                Colors.black.withOpacity(.8),
-                                Colors.black.withOpacity(.6),
+                           
                                 Colors.black.withOpacity(.6),
                                 Colors.black.withOpacity(.5),
                                 Colors.black.withOpacity(.4),

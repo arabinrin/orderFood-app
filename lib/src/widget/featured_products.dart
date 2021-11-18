@@ -1,32 +1,34 @@
 import 'package:flutter/material.dart';
 import 'package:food_course/helper/navigations.dart';
 import 'package:food_course/models/product.dart';
+import 'package:food_course/provider/product.dart';
 import 'package:food_course/src/screen/detail.dart';
 import 'package:food_course/src/widget/title.dart';
-
-List<ProductModel> productsList = [];
+import 'package:provider/provider.dart';
 
 class FeaturedProduct extends StatelessWidget {
   const FeaturedProduct({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    final productProvider = Provider.of<ProductProvider>(context);
+
     return Container(
       padding: EdgeInsets.all(8),
       height: 250,
       width: MediaQuery.of(context).size.width * .95,
       child: ListView.builder(
         scrollDirection: Axis.horizontal,
-        itemCount: productsList.length,
+        itemCount: productProvider.products.length,
         itemBuilder: (_, i) {
           return Padding(
             padding: const EdgeInsets.all(8.0),
             child: GestureDetector(
               onTap: () {
-                changeScreen(_, Details(product: productsList[i]));
+                changeScreen(_, Details(product: productProvider.products[i]));
               },
               child: Container(
-                padding: EdgeInsets.symmetric(horizontal: 8, vertical: 8),
+                padding: EdgeInsets.symmetric(horizontal: 2, vertical: 2),
                 height: 230,
                 width: 190,
                 decoration: BoxDecoration(
@@ -42,12 +44,17 @@ class FeaturedProduct extends StatelessWidget {
                 child: Column(
                   children: <Widget>[
                     Container(
+                      
                       height: 105,
-                      width: 105,
+                      width: 190,
                       decoration: BoxDecoration(
-                        shape: BoxShape.circle,
+                         
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(10),
+                        shape: BoxShape.rectangle,
                         image: DecorationImage(
-                            image: AssetImage(productsList[i].image),
+                            image:
+                                NetworkImage(productProvider.products[i].image),
                             fit: BoxFit.fill),
                       ),
                     ),
@@ -59,7 +66,7 @@ class FeaturedProduct extends StatelessWidget {
                           Padding(
                             padding: EdgeInsets.all(8),
                             child: CustomTitle(
-                              text: productsList[i].name,
+                              text: productProvider.products[i].name,
                               size: 14,
                               weight: FontWeight.normal,
                               color: Colors.black,
@@ -80,7 +87,7 @@ class FeaturedProduct extends StatelessWidget {
                                     )
                                   ]),
                               child: Icon(
-                                productsList[i].featured
+                                productProvider.products[i].featured
                                     ? Icons.favorite
                                     : Icons.favorite_border,
                                 size: 16,
@@ -100,9 +107,7 @@ class FeaturedProduct extends StatelessWidget {
                               padding:
                                   const EdgeInsets.symmetric(horizontal: 8),
                               child: CustomTitle(
-                                  text: productsList[i]
-                                      .rating
-                                      .toDouble()
+                                  text: '${productProvider.products[i].rating}'
                                       .toString(),
                                   size: 16,
                                   weight: FontWeight.normal,
@@ -119,7 +124,7 @@ class FeaturedProduct extends StatelessWidget {
                         Padding(
                           padding: const EdgeInsets.only(right: 8.0),
                           child: Text(
-                            '\$ ${productsList[i].price}',
+                            '\$ ${productProvider.products[i].price / 100}',
                             style: TextStyle(fontWeight: FontWeight.bold),
                           ),
                         )

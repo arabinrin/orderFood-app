@@ -12,29 +12,32 @@ class ProductModel {
   static const RESTAURANT = "restaurant";
   static const CATEGORY = "category";
   static const FEATURED = "featured";
-  static const RATE = "RATE";
+  static const RATE = "rate";
+  static const DESCRIPTION = "description";
 
   String _id;
   String _name;
   double _rating;
   String _image;
-  double _price;
+  int _price;
   String _restaurantId;
   String _restaurant;
   String _category;
   bool _featured;
   int _rate;
+  String _description;
 
   String get id => _id;
   String get name => _name;
   double get rating => _rating;
   String get image => _image;
-  double get price => _price;
+  int get price => _price;
   String get restaurantId => _restaurantId;
   String get restaurant => _restaurant;
   String get category => _category;
   bool get featured => _featured;
   int get rate => _rate;
+  String get description => _description;
 
   ProductModel.fromSnapshot(DocumentSnapshot snapshot) {
     _id = snapshot[ID];
@@ -47,5 +50,6 @@ class ProductModel {
     _category = snapshot[CATEGORY];
     _featured = snapshot[FEATURED];
     _rate = snapshot[RATE];
+    _description = snapshot[DESCRIPTION];
   }
 }
